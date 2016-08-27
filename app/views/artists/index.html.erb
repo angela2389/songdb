@@ -1,0 +1,15 @@
+<h1> Artists </h1>
+
+<table>
+  <tr>
+    <th><%=link_to "Name", :sort => "name" %></th>
+    <th><%=link_to "Created at", :sort => "created_at" %></th>
+  </tr>
+
+<% @artists.each do |artist| %>
+  <tr>
+    <td><%= link_to artist.name, artist %> </td>
+    <td><%= artist.created_at %> </td>
+  </tr>
+  <% end %>
+</table>
