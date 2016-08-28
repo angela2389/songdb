@@ -9,4 +9,6 @@
   <%= f.submit 'Add song' %>
 <% end %>
 
+<%= link_to "Clean up", remove_all_artist_songs_path(@artist), :method => :get %>
+
 <%= image_tag @artist.image %>

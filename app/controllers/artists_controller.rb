@@ -29,6 +29,11 @@ class ArtistsController < ApplicationController
     @song.destroy
   end
 
+  def destroy_all
+    @artist = Artist.find(params[:id])
+    Song.destroy_all(artist_id: @artist)
+  end
+
   private
 
   def artist_params

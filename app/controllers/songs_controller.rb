@@ -41,6 +41,13 @@ def destroy
     end
   end
 end
+
+def remove_all
+  @artist = Artist.find(params[:artist_id])
+  Song.delete_all(artist_id: @artist)
+
+  redirect_to @artist
+end
   private
 
   def song_params
