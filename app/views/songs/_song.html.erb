@@ -1,0 +1,3 @@
+<li id = "<%= song.id %>">
+<%= song.title %> <%= link_to "remove", [@artist, song], method: :delete, remote: true %>
+</li>

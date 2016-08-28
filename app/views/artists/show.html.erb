@@ -1,3 +1,12 @@
 <h1><%= @artist.name %></h1>
-<%= link_to 'New song', new_artist_song_path(artist_id: @artist.id)%>
+
+<ul id="songs">
+<%= render @artist.songs %>
+</ul>
+
+<%= form_for [@artist, @artist.songs.new], remote: true do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit 'Add song' %>
+<% end %>
+
 <%= image_tag @artist.image %>

@@ -1,7 +1,9 @@
 class ArtistsController < ApplicationController
+  before_action :set_song, only: [:destroy]
 
   def index
     @artists = Artist.order(params[:sort])
+    @songs = Song.all
   end
 
   def new
@@ -19,6 +21,12 @@ class ArtistsController < ApplicationController
   end
   def show
     @artist = Artist.find(params[:id])
+    @songs = Song.all
+  end
+
+  def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
   end
 
   private
@@ -27,4 +35,7 @@ class ArtistsController < ApplicationController
     params.require(:artist).permit(:name)
   end
 
+  def set_song
+    @song = Song.find(params[:id])
+  end
 end

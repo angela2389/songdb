@@ -2,7 +2,7 @@ class SongsController < ApplicationController
 
   def index
     @artist = Artist.find(params[:artist_id])
-    @songs = artist.songs
+    @songs = Song.all
   end
 
   def show
@@ -19,17 +19,27 @@ class SongsController < ApplicationController
     @artist = Artist.find(params[:artist_id])
     @song = @artist.songs.new(song_params)
 
-    if @song.save
-      redirect_to root_path
-    else
-      render 'new'
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to artist_path(@artist.id) }
+        format.js # render songs/create.js.erb
+      else
+        render 'new'
+      end
     end
   end
 
 def destroy
   @artist = Artist.find(params[:artist_id])
-  @song = @artist.songs.find(params[:id])
+  @song = Song.find(params[:id])
   @song.destroy
+
+  respond_to do |format|
+    if @song.destroy
+    format.html {redirect_to artist_path(@artist.id) }
+    format.js
+    end
+  end
 end
   private
 
