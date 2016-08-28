@@ -53,8 +53,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails_12factor', group: :production
 
 group :test do
-  gem "capybara", "2.7.1"
+  gem "capybara"
+  gem 'database_cleaner'
 end
 
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'selenium-webdriver'
